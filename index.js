@@ -32,7 +32,9 @@ for (let c = 0; c < brickColumnCount; c++) {
     bricks[c][r] = { x: 0, y: 0, status: 1 };
   }
 }
+
 let score = 0;
+let lives = 3;
 
 // eslint-disable-next-line no-use-before-define
 document.addEventListener('keydown', keyDownHandler, false);
@@ -83,8 +85,6 @@ function collisionDetection() {
             // eslint-disable-next-line no-alert
             alert('YOU WIN, CONGRATULATIONS!');
             document.location.reload();
-            // eslint-disable-next-line no-use-before-define
-            clearInterval(interval);
           }
         }
       }
@@ -96,6 +96,12 @@ function drawScore() {
   ctx.font = '16px Arial';
   ctx.fillStyle = '#0095DD';
   ctx.fillText(`Score: ${score}`, 8, 20);
+}
+
+function drawLives() {
+  ctx.font = '16px Arial';
+  ctx.fillStyle = '#0095DD';
+  ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 10);
 }
 
 function drawBricks() {
@@ -133,34 +139,50 @@ function drawPaddle() {
   ctx.fill();
   ctx.closePath();
 }
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawBricks();
   drawBall();
   drawPaddle();
   drawScore();
+  drawLives();
   collisionDetection();
-  x += dx;
-  y += dy;
-  if (y + dy < ballRadius) {
-    y = -dy;
+
+  if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+    dx = -dx;
+  } if (y + dy < ballRadius) {
+    dy = -dy;
   } else if (y + dy > canvas.height - ballRadius) {
     if (x > paddleX && x < paddleX + paddleWidth) {
       dy = -dy;
     } else {
-      // eslint-disable-next-line no-alert
-      alert('GAME OVER');
-      document.location.reload();
-      // eslint-disable-next-line no-use-before-define
-      clearInterval(interval); // needed for chrom to end game
+      // eslint-disable-next-line no-plusplus
+      lives--;
+      if (!lives) {
+        // eslint-disable-next-line no-alert
+        alert('GAME OVER');
+        document.location.reload();
+      } else {
+        x = canvas.width / 2;
+        y = canvas.height - 30;
+        dx = 2;
+        dy = -2;
+        paddleX = (canvas.width - paddleWidth) / 2;
+      }
     }
-  } if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-    dx = -dx;
-  } if (rightPressed) {
-    paddleX = Math.min(paddleX + 7, canvas.width - paddleWidth);
-  } else if (leftPressed) {
-    paddleX = Math.max(paddleX - 7, 0);
   }
+
+  if (rightPressed && paddleX < canvas.width - paddleWidth) {
+    paddleX += 7;
+  } else if (leftPressed && paddleX > 0) {
+    paddleX -= 7;
+  }
+
+  x += dx;
+  y += dy;
+
+  requestAnimationFrame(draw);
 }
 
-const interval = setInterval(draw, 10)
+draw();
