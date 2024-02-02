@@ -4,9 +4,9 @@ import Sprite from './Sprite.js';
 const canvas = document.getElementById('myCanvas');
 
 class Paddle extends Sprite {
-  constructor(x, y, width = 75, height = 10, color = '#000000') {
+  constructor(x, y, width = 75, height = 10, color = '#0095DD') {
     super(x, y, width, height, color);
-    this.X = (canvas.width - this.width) / 2;
+    this.X = ((canvas.width - this.width) / 2) + 60;
   }
 
   render(ctx) {

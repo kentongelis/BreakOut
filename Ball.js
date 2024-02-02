@@ -2,7 +2,7 @@
 import Sprite from './Sprite.js';
 
 class Ball extends Sprite {
-  constructor(x, y, radius = 10, color = '#000000') {
+  constructor(x, y, radius = 10, color = '#0095DD') {
     super(x, y, 0, 0, color);
     this.radius = radius;
     this.dx = 2;

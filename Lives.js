@@ -4,7 +4,7 @@ import Sprite from './Sprite.js';
 const canvas = document.getElementById('myCanvas');
 
 class Lives extends Sprite {
-  constructor(x = canvas.width - 65, y = 20, color = '#000000') {
+  constructor(x = canvas.width - 65, y = 20, color = '#ffffff') {
     super(x, y, color);
     this.color = color;
     this.lives = 3;

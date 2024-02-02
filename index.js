@@ -63,8 +63,23 @@ function collisionDetection() {
           ball.dy = -ball.dy;
           b.status = false;
           // eslint-disable-next-line no-plusplus
-          score.update(1);
-          if (score.score === bricks.rowCount * bricks.columnCount) {
+          if (r === 0) {
+            score.update(7);
+          } else if (r === 1) {
+            score.update(7);
+          } else if (r === 2) {
+            score.update(5);
+          } else if (r === 3) {
+            score.update(5);
+          } else if (r === 4) {
+            score.update(3);
+          } else if (r === 5) {
+            score.update(3);
+          } else if (r === 6) {
+            score.update(1);
+          } else if (r === 7) {
+            score.update(1);
+          } if (score.score === 448) {
             // eslint-disable-next-line no-alert
             alert('YOU WIN, CONGRATULATIONS!');
             document.location.reload();
