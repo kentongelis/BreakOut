@@ -1,8 +1,15 @@
 /* eslint-disable import/extensions */
-import Sprite from './Sprite.js';
+import Sprite from './Sprite';
 
 class Ball extends Sprite {
-  constructor(x, y, radius = 10, color = '#0095DD') {
+  radius: number
+  dx: number
+  dy: number
+  x: number;
+  y: number;
+  color: any;
+
+  constructor(x: number, y: number, radius = 10, color = '#0095DD') {
     super(x, y, 0, 0, color);
     this.radius = radius;
     this.dx = 2;
@@ -14,7 +21,7 @@ class Ball extends Sprite {
     this.y += this.dy;
   }
 
-  render(ctx) { // Overrides the existing render method!
+  render(ctx: any) { // Overrides the existing render method!
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fillStyle = this.color;

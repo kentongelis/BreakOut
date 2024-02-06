@@ -1,11 +1,11 @@
 /* eslint-disable import/extensions */
-import Sprite from './Sprite.js';
+import Sprite from './Sprite';
 
-const canvas = document.getElementById('myCanvas');
+const canvas = document.getElementById('myCanvas') as HTMLInputElement | null
 
 class Background extends Sprite {
 // eslint-disable-next-line class-methods-use-this
-  render(ctx) {
+  render(ctx: any) {
     ctx.beginPath();
     ctx.globalCompositeOperation = 'destination-over';
     ctx.fillStyle = '#000000';

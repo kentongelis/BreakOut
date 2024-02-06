@@ -1,17 +1,22 @@
 // eslint-disable-next-line import/extensions
-import Sprite from './Sprite.js';
+import Sprite from './Sprite';
 
-const canvas = document.getElementById('myCanvas');
+const canvas = document.getElementById('myCanvas') as HTMLInputElement | null
 
 class Lives extends Sprite {
+  color: string
+  lives: number
+  font: string
+  x: number
+  y: number
   constructor(x = canvas.width - 65, y = 20, color = '#ffffff') {
-    super(x, y, color);
+    super(x, y);
     this.color = color;
     this.lives = 3;
     this.font = '16px Arial';
   }
 
-  render(ctx) {
+  render(ctx: any) {
     ctx.font = this.font;
     ctx.fillStyle = this.color;
     ctx.fillText(`Lives: ${this.lives}`, this.x, this.y);

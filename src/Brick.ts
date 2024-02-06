@@ -1,8 +1,9 @@
 /* eslint-disable import/extensions */
-import Sprite from './Sprite.js';
+import Sprite from './Sprite';
 
 class Brick extends Sprite {
-  constructor(x, y, width = 62, height = 20, color = '#000000') {
+  status: boolean;
+  constructor(x: number, y: number, width = 62, height = 20, color = '#000000') {
     super(x, y, width, height, color); // pass arguments to Sprite!
     this.status = true;// adds a new property
   }

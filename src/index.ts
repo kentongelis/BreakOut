@@ -1,17 +1,17 @@
 /* eslint-disable import/extensions */
-import Ball from './Ball.js';
-import Paddle from './Paddle.js';
-import Background from './Background.js';
-import Score from './Score.js';
-import Lives from './Lives.js';
-import Bricks from './Bricks.js';
+import Ball from './Ball';
+import Paddle from './Paddle';
+import Background from './Background';
+import Score from './Score';
+import Lives from './Lives';
+import Bricks from './Bricks';
 
-const canvas = document.getElementById('myCanvas');
+const canvas = document.getElementById('myCanvas') as HTMLCanvasElement | null
 const ctx = canvas.getContext('2d');
 
 const ball = new Ball(200, 200, 10);
-const paddle = new Paddle();
-const bricks = new Bricks();
+const paddle = new Paddle(0, 0);
+const bricks = new Bricks(0, 0);
 const background = new Background();
 const score = new Score();
 const lives = new Lives();
@@ -26,14 +26,14 @@ document.addEventListener('keyup', keyUpHandler, false);
 // eslint-disable-next-line no-use-before-define
 document.addEventListener('mousemove', mouseMoveHandler, false);
 
-function mouseMoveHandler(e) {
+function mouseMoveHandler(e: any) {
   const relativeX = e.clientX - canvas.offsetLeft;
   if (relativeX > 0 && relativeX < canvas.width) {
     paddle.X = relativeX - paddle.width / 2;
   }
 }
 
-function keyDownHandler(e) {
+function keyDownHandler(e: any) {
   if (e.key === 'Right' || e.key === 'ArrowRight') {
     rightPressed = true;
   } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
@@ -41,7 +41,7 @@ function keyDownHandler(e) {
   }
 }
 
-function keyUpHandler(e) {
+function keyUpHandler(e: any) {
   if (e.key === 'Right' || e.key === 'ArrowRight') {
     rightPressed = false;
   } else if (e.key === 'Left' || e.key === 'ArrowLeft') {

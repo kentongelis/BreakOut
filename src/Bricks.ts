@@ -1,8 +1,20 @@
 /* eslint-disable import/extensions */
-import Brick from './Brick.js';
+import Brick from './Brick';
 
 class Bricks {
-  constructor(x, y, width = 30, height = 10, color = '#000000') {
+  width: number
+  height: number
+  color: string
+  x: number
+  y: number
+  rowCount: number
+  columnCount: number
+  padding: number
+  offsetTop: number
+  offsetLeft: number
+  bricks: any
+
+  constructor(x: number, y: number, width = 30, height = 10, color = '#000000') {
     this.width = width;
     this.height = height;
     this.color = color;
@@ -20,12 +32,12 @@ class Bricks {
       // eslint-disable-next-line no-plusplus
       for (let r = 0; r < this.rowCount; r++) {
       // bricks[c][r] = { x: 0, y: 0, status: 1 };
-        this.bricks[c][r] = new Brick();
+        this.bricks[c][r]= new Brick(0, 0);
       }
     }
   }
 
-  render(ctx) {
+  render(ctx: any) {
     // eslint-disable-next-line no-plusplus
     for (let c = 0; c < this.columnCount; c++) {
       // eslint-disable-next-line no-plusplus
